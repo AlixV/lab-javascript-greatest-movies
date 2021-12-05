@@ -2011,6 +2011,7 @@ if (typeof module !== 'undefined') {
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
+
 function getAllDirectors(movies) {
  
   const arrayOfDirectors = movies.map((movie) => {return movie.director})
@@ -2023,7 +2024,6 @@ function getAllDirectors(movies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(arr) {
 const SpielbergMovies = arr.filter((movie) => {
-  
   if(movie.director === "Steven Spielberg" && movie.genre.includes('Drama') ){
     return movie
   }
@@ -2036,30 +2036,56 @@ function scoresAverage(arr) {
 
   if (!arr.length) return 0;
   else if (arr.length === 1) return arr[0];
-  // if score="" continue
 
   const averageScore = arr.reduce( (acc, val) => {
-    
-    const tmp = val.score ? val.score : 0 ;
-    return acc + tmp;
-
-    // return acc + val.score
+    const tmp = val.score ? val.score : 0 ; 
+    return acc + tmp;  
   }, 0);
 
-//console.log(averageScore / arr.length);
-const avg = averageScore / arr.length;
-return Number(avg.toFixed(2))
-
+const avg = averageScore / arr.length; 
+return Number(avg.toFixed(2)) // revoir "Number" 
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(arr) { 
+  
+ const drama = arr.filter((movie) => {
+  if(movie.genre.includes('Drama')) {
+    return movie 
+  }})
+
+  if (!drama.length) return 0;
+
+  const reduScDrama = drama.reduce ( (acc,val) => { 
+   const tmp2 = val.score ? val.score : 0 ; 
+   return acc + tmp2; 
+  }, 0);
+
+  const avg2 = reduScDrama/ drama.length;
+  return Number(avg2.toFixed(2)) 
+}
+dramaMoviesScore(movies);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(arr) { 
+  //let newArr = []; ?
+  //const cloneArr = {...arr}; I don't understand the spread operator
+  const sort1 = arr.sort( (a, b) => {
+    return a.year - b.year;
+  });
+  //const titlesSorted = arr.map ((movie) => {
+   //return movie.title.sort() 
+  
+  const sort2 = sort1.title.sort();
+    //return newArr = [result]
+
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(arr) { // I don't understand well .sort
+  const orderByTitle = arr.title.sort();
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
